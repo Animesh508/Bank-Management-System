@@ -3,11 +3,16 @@ package com.bankmanagmentsystem.www.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Customer {
@@ -25,7 +30,7 @@ public class Customer {
 	@Column(unique = true)
 	private String customerEmail;
 
-	private Set<Account> acounts = new HashSet<>();
+	private Set<Account> accounts = new HashSet<>();
 
 	public int getCustomerId() {
 		return customerId;
@@ -60,18 +65,20 @@ public class Customer {
 	}
 
 	public Set<Account> getAcount() {
-		return acounts;
+		return accounts;
 	}
-
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "customer_accounts", joinColumns = @JoinColumn(name="Customer_id"), inverseJoinColumns = @JoinColumn(name="account_id"))
 	public void setAcount(Set<Account> acount) {
-		this.acounts = acount;
+		this.accounts = acount;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((acounts == null) ? 0 : acounts.hashCode());
+		result = prime * result + ((accounts == null) ? 0 : accounts.hashCode());
 		result = prime * result + ((customerEmail == null) ? 0 : customerEmail.hashCode());
 		result = prime * result + ((customerFirstName == null) ? 0 : customerFirstName.hashCode());
 		result = prime * result + ((customerLastName == null) ? 0 : customerLastName.hashCode());
@@ -89,10 +96,10 @@ public class Customer {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
-		if (acounts == null) {
-			if (other.acounts != null)
+		if (accounts == null) {
+			if (other.accounts != null)
 				return false;
-		} else if (!acounts.equals(other.acounts)) {
+		} else if (!accounts.equals(other.accounts)) {
 			return false;
 		}
 		if (customerEmail == null) {
