@@ -25,7 +25,7 @@ public class Account {
 
 	@ManyToMany(mappedBy = "accounts", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Set<Customer> customer = new HashSet<>();
+	private Set<Customer> customers = new HashSet<>();
 
 	public int getAccountId() {
 		return accountId;
@@ -51,12 +51,12 @@ public class Account {
 		this.accountType = accountType;
 	}
 
-	public Set<Customer> getCustomer() {
-		return customer;
+	public Set<Customer> getCustomers() {
+		return customers;
 	}
 
-	public void setCustomer(Set<Customer> customer) {
-		this.customer = customer;
+	public void setCustomer(Set<Customer> customers) {
+		this.customers = customers;
 	}
 
 	@Override
