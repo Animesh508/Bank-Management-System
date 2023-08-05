@@ -11,11 +11,11 @@ public interface CustomerService {
 	
 	public Customer getCustomer(int customerId);
 	
-	public Customer getCustomer(Customer customer);
+	public Customer creatCustomer(Customer customer);
 	
 	public Customer updateCustomerDetails(int custometId, Customer customer);
 	
-	public Customer addCustomerForCustomer(int customerId, Account account);
+	public Account addAccountForCustomer(int customerId, Account account);
 	
 
 }

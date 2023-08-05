@@ -87,9 +87,9 @@ public class Account {
 			return false;
 		if (Double.doubleToLongBits(balabce) != Double.doubleToLongBits(other.balabce))
 			return false;
-		if (customer == null) {
+		if (customers == null) {
 			return false;
-		}else if(!customer.equals(other.customer))
+		}else if(!customers.equals(other.customers))
 			return false;
 		return true;
 	}

@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer getCustomer(Customer customer) {
+	public Customer creatCustomer(Customer customer) {
 		Optional<Customer> optionalCustomer = customerRepository.findBycustomeremail(customer.getCustomerEmail());
 		if(optionalCustomer.isPresent()) {
 			return null;
@@ -56,7 +56,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	@Transactional
-	public Customer addCustomerForCustomer(int customerId, Account account) {
+	public Account addAccountForCustomer(int customerId, Account account) {
 		Customer customer = this.getCustomer(customerId);
 		
 		Set<Account> accounts = customer.getAcount();
